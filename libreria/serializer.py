@@ -1,7 +1,7 @@
 from rest_framework import serializers
 # Se importa el modulo serializer
 
-from .models import libro
+from .models import libro, usuario
 
 #Se importa la clase del model
 
@@ -19,6 +19,25 @@ class libroSerializer(serializers.ModelSerializer):
     
     class Meta:
         model=libro
+        fields ='__all__'
+        # fields = {
+        #     'id',
+        #     'titulo',
+        #     'autor',
+        #     'isbn',
+        #     'genero',
+        #     'num_ejem_disponibles',
+        #     'num_ejem_ocupados'
+        # }
+        
+class usuarioSerializer(serializers.ModelSerializer):
+    
+    #Agregar los campos necesarios a mostrar
+    #si se desea agregar todos los campos se 
+    #puede utilizar la función __all__
+    
+    class Meta:
+        model=usuario
         fields ='__all__'
         # fields = {
         #     'id',

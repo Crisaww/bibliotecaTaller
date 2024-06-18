@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters
 
-from libreria.serializer import libroSerializer
-from .models import libro
+from libreria.serializer import libroSerializer, usuarioSerializer
+from .models import libro, usuario
 
 
 # Create your views here.
@@ -13,4 +13,11 @@ class libroView(viewsets.ModelViewSet):
     queryset = libro.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['$titulo', '$autor', '$genero', '$isbn']
+    
+
+class usuarioView(viewsets.ModelViewSet):
+    serializer_class = usuarioSerializer
+    queryset = usuario.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['$nombre']
     

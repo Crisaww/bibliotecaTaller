@@ -103,28 +103,28 @@ function RegistrarLibro() {
         $.ajax({
             url: url,
             type: "POST",
-            data: JSON.stringify(formData),
-            contentType: "application/json",
-            success: function(result) {
-                Swal.fire({
-                    title: "Excelente",
-                    text: "Su registro se guardó correctamente",
-                    icon: "success"
-                });
-                listarLibro(); // Lista los libros después de registrar
+            data: formData,
+            success: function(result){
+              Swal.fire({
+                title: "Excelente",
+                text: "Su registro se guardó correctamente",
+                icon: "success"
+              });
+              // window.location.href= "http://127.0.0.1:5500/front_end/clienteRegistro.html";
             },
-            error: function(error) {
-                Swal.fire("Error", "Error al guardar " + error.responseText, "error");
+            error: function(error){
+              Swal.fire("Error", "Error al guardar ", "error");
             }
-        });
-    } else {
-        Swal.fire({
+          });
+        }else{
+         // alert("llena los campos correctamente")
+          Swal.fire({
             title: "Error!",
-            text: "Complete los campos correctamente",
+            text: "complete los campos correctamente",
             icon: "error"
-        });
-    }
-}
+          });
+        }
+  }
 
 
 function validarCampos() {
@@ -325,6 +325,7 @@ function consultarLibroID(id){
 }
 
 //Cuando le damos click al boton de guardar, este llamara a la function UpdateProducto por medio del onclick******
+
 function updateLibro() {
     var id = document.getElementById("id").value;
 
@@ -335,33 +336,39 @@ function updateLibro() {
         "genero": document.getElementById("genero").value,
         "num_ejem_disponibles": document.getElementById("num_ejem_disponibles").value,
         "num_ejem_ocupados": document.getElementById("num_ejem_ocupados").value
+        // "estado": document.getElementById("estado").value
     };
 
-    if (validarCampos()) {
-        $.ajax({
-            url: url + id,
-            type: "PUT",
-            data: JSON.stringify(formData),
-            contentType: "application/json",
-            success: function(result) {
-                Swal.fire({
-                    title: "Excelente",
-                    text: "Su registro se actualizó correctamente",
-                    icon: "success"
-                });
-                $('#exampleModal').modal('hide');
-                listarLibro(); // Lista los libros después de actualizar
-            },
-            error: function(error) {
-                Swal.fire("Error", "Error al guardar", "error");
-            }
-        });
-    } else {
+
+    //Cuando estamos actualizando los datos, y lo hacemos correctamente Aparecerá la Alerta EXCELENTE ***
+    if(validarCampos()){
+    $.ajax({
+        url: url + id+"/",
+        type: "PUT",
+        data: formData,
+        success: function(result) {
+            Swal.fire({
+                title: "Excelente",
+                text: "Su registro se actualizó correctamente",
+                icon: "success"
+            });
+            
+            var modal = document.getElementById("exampleModal"); 
+            modal.style.display = "hide";
+
+            listarLibro(); //Lista los médicos después de actualizar
+        },
+        error: function(error) {
+            Swal.fire("Error", "Error al guardar", "error");
+        }  
+    });
+    }else{
         Swal.fire({
             title: "Error!",
             text: "Complete los campos correctamente",
             icon: "error"
         });
-    }
+        }
 }
+
 

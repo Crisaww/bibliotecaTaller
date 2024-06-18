@@ -21,4 +21,6 @@ from libreria import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('libreria/',include('libreria.urls'))
-]   
+]  
+
+
