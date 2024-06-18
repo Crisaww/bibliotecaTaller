@@ -22,8 +22,8 @@ class libro(models.Model):
     
 class usuario(models.Model):
     
-    nombre = models.CharField(max_length=60)
-    direccion = models.CharField(max_length=60)
+    nombreUsuario = models.CharField(max_length=60)
+    direccionResidencia = models.CharField(max_length=60)
     correo = models.CharField(max_length=150)
     tipo_usuario = [
         (1, 'Lector'),
@@ -45,6 +45,21 @@ class prestamo(models.Model):
     usuario = models.ForeignKey(usuario, related_name='prestamo', on_delete=models.PROTECT)
     libro = models.ForeignKey(libro, related_name='prestamo', on_delete=models.CASCADE)
     estado_prestamo = models.IntegerField(choices=estado_prestamo)
+     
+    def __str__(self):
+        return self.title
+    
+
+class multa(models.Model):
+    estado_multa  = [
+        (1, 'Pagada'),
+        (2, 'Pendiente')  
+    ]
+    valor_multa = models.IntegerField()
+    fecha_multa = models.DateField()
+    usuario = models.ForeignKey(usuario, related_name='multa', on_delete=models.PROTECT)
+    prestamo = models.ForeignKey(libro, related_name='multa', on_delete=models.CASCADE)
+    estado_multa = models.IntegerField(choices=estado_multa)
      
     def __str__(self):
         return self.title
