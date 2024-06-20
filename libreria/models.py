@@ -17,7 +17,7 @@ class libro(models.Model):
     num_ejem_ocupados = models.IntegerField()
     
     def __str__(self):
-        return self.title
+        return self.titulo
     
     
 class usuario(models.Model):
@@ -32,7 +32,7 @@ class usuario(models.Model):
     ]
     tipoUsuario = models.IntegerField(choices=tipo_usuario)
     def __str__(self):
-        return self.title
+        return self.nombreUsuario
 
 class prestamo(models.Model):
     estado_prestamo = [

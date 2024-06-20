@@ -8,18 +8,18 @@ from libreria import views
 router=routers.DefaultRouter()
 router.register(r'',views.libroView,'/libro')
 
-router=routers.DefaultRouter()
-router.register(r'',views.libroView,'/usuario')
+routerUsuario=routers.DefaultRouter()
+routerUsuario.register(r'',views.usuarioView,'/usuario')
 
-router=routers.DefaultRouter()
-router.register(r'',views.libroView,'/prestamo')
+#router=routers.DefaultRouter()
+router.register(r'',views.prestamoView,'/prestamo')
 
-router=routers.DefaultRouter()
-router.register(r'',views.libroView,'/multa')
+#router=routers.DefaultRouter()
+router.register(r'',views.multaView,'/multa')
 
 urlpatterns = [
-    path("api/v1/libro/", include(router.urls)),
-    path("api/v1/usuario/", include(router.urls)),
+    #path("api/v1/libro/", include(router.urls)),
+    path("api/v1/usuario/", include(routerUsuario.urls)),
     path("api/v1/prestamo/", include(router.urls)),
     path("api/v1/multa/", include(router.urls)),
     path("docs/",include_docs_urls(title="Tienda API"))

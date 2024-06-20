@@ -207,10 +207,12 @@
                   </div>
 
                   <div class="col-md-4">
-                    <label for="usuario" class="form-label">Usuario*</label>
-                     <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuario(this);">
+                    <label for="tipo_usuario" class="form-label">Usuario*</label>
+                     <select name="tipo_usuario" id="tipo_usuario" class="form-select" onfocusout="validarUsuario(this);">
                         <option selected disabled value="">Seleccione los usuarios...</option>
-                        <!-- <option value="Activo">Activo</option> -->
+                        <option value="1">Lector</option>
+                        <option value="2">Bibliotecario</option>
+                        <option value="3">Administrador</option>
                     </select>
                   </div>
               

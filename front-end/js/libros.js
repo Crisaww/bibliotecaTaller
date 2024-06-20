@@ -1,5 +1,5 @@
 //Se almacena la URL de la API
-let url="http://localhost:8000/libreria/api/v1/libro/";
+let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
 
 function listarLibro() {
     $.ajax({
