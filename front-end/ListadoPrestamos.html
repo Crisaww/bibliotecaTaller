@@ -210,29 +210,44 @@
                                   </div>
                                   
                                   <div class="col-md-4">
-                                    <label for="nombreUsuario" class="form-label" >Nombre del usuario*</label>
-                                    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" onfocusout="validarNombreUsuario(this);" >
+                                    <label for="fecha_prestamo" class="form-label">Fecha de préstamo*</label>
+                                    <input type="date" class="form-control" name="fecha_prestamo" id="fecha_prestamo" onfocusout="validarFechaPrestamo(this);" >
                                     <input type="hidden" id="id"> 
                                   </div>
                                 
                                 
                                   <div class="col-md-4">
-                                    <label for="direccionResidencia" class="form-label">Dirección de Residencia*</label>
-                                    <input type="text" class="form-control" name="direccionResidencia" id="direccionResidencia" onfocusout="validarDireccionResidencia(this);" >
+                                    <label for="fecha_devolucion" class="form-label">Fecha de devolución*</label>
+                                    <input type="date" class="form-control" name="fecha_devolucion" id="fecha_devolucion" onfocusout="validarFechaDevolucion(this);" >
                                   </div>
                 
                                   <div class="col-md-4">
-                                    <label for="correo" class="form-label">Correo electrónico*</label>
-                                    <input type="text" class="form-control" name="correo" id="correo" onfocusout="validarCorreo(this);" >
+                                    <label for="usuario" class="form-label">Usuario que realiza el préstamo*</label>
+                                     <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuarioPrestamo(this);">
+                                        <option selected disabled value="">Usuario...</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        
+                                    </select>
                                   </div>
                 
                                   <div class="col-md-4">
-                                    <label for="tipo_usuario" class="form-label">Tipo de usuario*</label>
-                                     <select name="tipo_usuario" id="tipo_usuario" class="form-select" onfocusout="validarUsuario(this);">
-                                        <option selected disabled value="">Seleccione los usuarios...</option>
-                                        <option value="Lector">Lector</option>
-                                        <option value="Bibliotecario">Bibliotecario</option>
-                                        <option value="Administrador">Administrador</option>
+                                    <label for="libro" class="form-label">Libro prestado*</label>
+                                     <select name="libro" id="libro" class="form-select" onfocusout="validarLibroPrestado(this);">
+                                        <option selected disabled value="">Libro...</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        
+                                    </select>
+                                  </div>
+                
+                                  <div class="col-md-4">
+                                    <label for="estado_prestamo" class="form-label">Estado del préstamo*</label>
+                                     <select name="estado_prestamo" id="estado_prestamo" class="form-select" onfocusout="validarEstadoPrestamo(this);">
+                                        <option selected disabled value="">Seleccione el estado...</option>
+                                        <option value="Prestamo">Préstamo</option>
+                                        <option value="Entregado">Entregado</option>
+                                        <option value="Cancelado">Cancelado</option>
                                     </select>
                                   </div>
 

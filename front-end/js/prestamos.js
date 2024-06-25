@@ -53,6 +53,7 @@ function listarPrestamo() {
 
                 botonEditarPrestamo.onclick=function(e){
                     $('#exampleModal').modal('show');
+                    CargarFormulario();
                     consultarPrestamoID(this.value); 
                 }
                 botonEditarPrestamo.className= "btn btn-danger"
@@ -227,8 +228,24 @@ function validarEstadoPrestamo(estado){
     return valido;
 }
 
-
-
+/* metodo para obtener los datos en el modal de actualizar*/ 
+//1.Crear petición que traiga la información del medico por id
+function consultarPrestamoID(id){
+    //alert(id);
+    $.ajax({
+        url:url+id,
+        type:"GET",
+        success: function(result){
+            document.getElementById("id").value=result["id"];
+            document.getElementById("fecha_prestamo").value = result["fecha_prestamo"];
+            document.getElementById("fecha_devolucion").value=result["fecha_devolucion"];
+            document.getElementById("usuario").value=result[ "usuario"]["nombreUsuario"];
+            document.getElementById("libro").value=result[ "libro"]["titulo"];
+            document.getElementById("estado_prestamo").value=result[ "estado_prestamo"];
+  
+        }
+    });
+  }
 
 function LimpiarPrestamo(){
     document.getElementById("fecha_prestamo").className="form-control";
@@ -284,27 +301,6 @@ function eliminarPrestamo(id){
       }
     });
   }
-
-
-/* metodo para obtener los datos en el modal de actualizar*/ 
-//1.Crear petición que traiga la información del cliente por id
-function consultarPrestamoID(id){
-    //alert(id);
-    $.ajax({
-        url:url+id,
-        type:"GET",
-        success: function(result){
-            
-            document.getElementById("id").value=result["id"];
-            document.getElementById("fecha_prestamo").value=result["fecha_prestamo"];
-            document.getElementById("fecha_devolucion").value=result["fecha_devolucion"];
-            document.getElementById("usuario").value=result["usuario"];
-            document.getElementById("libro").value=result["libro"];
-            document.getElementById("estado_prestamo").value=result["estado_prestamo"];
-
-        }
-    });
-}
 
 function CargarFormulario() {
     cargarLibro();
@@ -366,7 +362,7 @@ function cargarUsuario() {
 
 function updatePrestamo() {
     var id = document.getElementById("id").value;
-
+    consultarPrestamoID(id);
     let formData = {
         "fecha_prestamo": document.getElementById("fecha_prestamo").value,
         "fecha_devolucion": document.getElementById("fecha_devolucion").value,
