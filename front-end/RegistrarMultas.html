@@ -44,6 +44,8 @@
         overflow-y: auto;
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/multas.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -167,23 +169,85 @@
       </div>
       <!-- End Sidebar -->
 
-      <div class="main-panel">
+      <div class="main-panel" style="background-image: url(./img/BibliotecaGrande2.jpeg);" >
         <div class="container" style="margin-top: 0px;">
-          <div class="page-inner">
-            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4" style="justify-content: center;">
-              <div>
-                <h3 class="fw-bold mb-3">Top libros más vendidos en BiblioWeb en el 2023</h3>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Book Cards -->
-            <!-- Repeat the structure for each book card -->
-
+          <div class="page-inner" style="background-image: url(./img/BibliotecaGrande2.jpeg); padding: 60px;">
             
-            <!-- Repeat the above block for other books -->
           </div>
-        </div>
+
+          <div style="display: flex; justify-content: center; background-image: url(./img/BibliotecaGrande2.jpeg); height: 500px; padding: 100px 40px 0px 40px; ">
+            
+
+
+              
+                <div class="row" style="margin-left: 0; margin-right: 0; backdrop-filter: blur(10px); display: flex; justify-content: center; width: 80%; height: 100%; border-radius: 50px; align-items: center; padding-top: 20px; border: 2px solid #ffffff;">
+                  
+                  <div class="col-12" style="text-align: center;">
+                    <h1 style="margin: 0; color: white;">Registrar multas</h1>
+                    <h5 style="margin: 0; color: white;">Todos los campos con (*) son obligatorios</h5>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="usuario" class="form-label">Usuario que se va a multar*</label>
+                     <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuarioMulta(this);">
+                        <option selected disabled value="">Usuario...</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="valor_multa" class="form-label">Valor de la multa*</label>
+                    <input type="number" class="form-control" name="valor_multa" id="valor_multa" onfocusout="validarValorMulta(this);" >
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="fecha_multa" class="form-label">Fecha de la multa*</label>
+                    <input type="date" class="form-control" name="fecha_multa" id="fecha_multa" onfocusout="validarFechaMulta(this);" >
+                  </div>
+
+
+
+                  <div class="col-md-4">
+                    <label for="estado_multa" class="form-label">Estado de la multa*</label>
+                     <select name="estado_multa" id="estado_multa" class="form-select" onfocusout="validarEstadoMulta(this);">
+                        <option selected disabled value="">Seleccione el estado...</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Pagada">Pagada</option>
+                    </select>
+                  </div>
+          
+                  <div class="col-12" style="display: flex; justify-content: center; ">
+                    <div class="col-6" style="display: flex; justify-content: end; padding-right:10px;">
+                      <button class="buttonRegistrar" type="button" onclick="RegistrarPrestamo();">Registrar</button>
+                    </div>
+
+                    <div class="col-6" style="display: flex; justify-content: start; padding-left:10px;">
+                      <button class="buttonRegistrar" type="button" onclick="LimpiarPrestamo();" >Limpiar</button>
+                    </div>
+                  </div>
+                  
+
+                 
+              
+             </div>
+             
+          
+            
+          </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- Repeat the above block for other books -->
+      </div>
+    
+    </div>
+        
       </div>
     </div>
 
@@ -197,5 +261,6 @@
 
     <!-- Kaiadmin JS -->
     <script src="./js/kaiadmin.min.js"></script>
+    
   </body>
 </html>
