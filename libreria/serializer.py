@@ -51,6 +51,9 @@ class usuarioSerializer(serializers.ModelSerializer):
         
 class prestamoSerializer(serializers.ModelSerializer):
     
+    libro=libroSerializer()
+    usuario=usuarioSerializer()
+    
     #Agregar los campos necesarios a mostrar
     #si se desea agregar todos los campos se 
     #puede utilizar la función __all__

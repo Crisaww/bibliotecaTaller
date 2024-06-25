@@ -1,6 +1,6 @@
 //Se almacena la URL de la API
-//let url="http://10.192.66.25:8000/libreria/api/v1/usuario/";
-let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+let url="http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+//let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
 
 function listarPrestamo() {
     $.ajax({
@@ -10,6 +10,7 @@ function listarPrestamo() {
             console.log(result);
             let cuerpoTablaPrestamo = document.getElementById("cuerpoTablaPrestamo");
             cuerpoTablaPrestamo.innerHTML="";
+            console.log(result);
             for (let i = 0; i < result.length; i++) {
                //se crea una etiqueta tr por cada registro
                 let trRegistro = document.createElement("tr");//fila por cada registro de la tabla
@@ -228,6 +229,63 @@ function validarEstadoPrestamo(estado){
     return valido;
 }
 
+
+function LimpiarPrestamo(){
+    document.getElementById("fecha_prestamo").className="form-control";
+    document.getElementById("fecha_devolucion").className="form-control";
+    document.getElementById("usuario").className="form-control";
+    document.getElementById("libro").className="form-control";
+    document.getElementById("estado_prestamo").className="form-control";
+    
+    
+    document.getElementById("fecha_prestamo").value = "";
+    document.getElementById("fecha_devolucion").value = "";
+    document.getElementById("usuario").value = "";
+    document.getElementById("libro").value = "";
+    document.getElementById("estado_prestamo").value = "";
+    
+    
+}
+
+
+
+// funcion  de deshabilitar prestamo
+function eliminarPrestamo(id){
+    swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta opción no tiene marcha atrás",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor:'#3085d6',
+        cancelButtonText:'Cancelar',
+        cancelButtonColor:'#d33',
+        confirmButtonText:'Sí, !Eliminar!',
+        
+    }).then((result)=>{
+        if (result.isConfirmed){
+        $.ajax({
+          url: url +id,
+          type: "DELETE",
+          success: function(result){
+              swal.fire(
+              'Eliminado',
+              'El usuario ha sido eliminado ',
+              'success'
+            );
+            listarPrestamo();//recarga la lista de usuarios
+        },
+        error: function(error){
+            Swal.fire(
+                'Error',
+                'No se puede eliminar el registro ',
+                'Error',
+            );
+        }
+    });
+}
+    });
+  }
+
 /* metodo para obtener los datos en el modal de actualizar*/ 
 //1.Crear petición que traiga la información del medico por id
 function consultarPrestamoID(id){
@@ -239,68 +297,13 @@ function consultarPrestamoID(id){
             document.getElementById("id").value=result["id"];
             document.getElementById("fecha_prestamo").value = result["fecha_prestamo"];
             document.getElementById("fecha_devolucion").value=result["fecha_devolucion"];
-            document.getElementById("usuario").value=result[ "usuario"]["nombreUsuario"];
-            document.getElementById("libro").value=result[ "libro"]["titulo"];
+            document.getElementById("usuario").value=result[ "usuario"]["id"];
+            document.getElementById("libro").value=result[ "libro"]["id"];
             document.getElementById("estado_prestamo").value=result[ "estado_prestamo"];
-  
         }
     });
-  }
-
-function LimpiarPrestamo(){
-    document.getElementById("fecha_prestamo").className="form-control";
-    document.getElementById("fecha_devolucion").className="form-control";
-    document.getElementById("usuario").className="form-control";
-    document.getElementById("libro").className="form-control";
-    document.getElementById("estado_prestamo").className="form-control";
-    
-
-    document.getElementById("fecha_prestamo").value = "";
-    document.getElementById("fecha_devolucion").value = "";
-    document.getElementById("usuario").value = "";
-    document.getElementById("libro").value = "";
-    document.getElementById("estado_prestamo").value = "";
- 
- 
 }
 
-
-// funcion  de deshabilitar prestamo
-function eliminarPrestamo(id){
-    swal.fire({
-      title: '¿Estás seguro?',
-      text: "Esta opción no tiene marcha atrás",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor:'#3085d6',
-      cancelButtonText:'Cancelar',
-      cancelButtonColor:'#d33',
-      confirmButtonText:'Sí, !Eliminar!',
-  
-    }).then((result)=>{
-      if (result.isConfirmed){
-        $.ajax({
-          url: url +id,
-          type: "DELETE",
-          success: function(result){
-            swal.fire(
-              'Eliminado',
-              'El usuario ha sido eliminado ',
-              'success'
-            );
-            listarPrestamo();//recarga la lista de usuarios
-          },
-          error: function(error){
-            Swal.fire(
-              'Error',
-              'No se puede eliminar el registro ',
-              'Error',
-            );
-          }
-        });
-      }
-    });
-  }
 
 function CargarFormulario() {
     cargarLibro();
@@ -309,7 +312,8 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarLibro() {
-    let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
+    let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/listar-libros/";
+    //let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
 
     $.ajax({
         url: urlLibro,
@@ -331,7 +335,8 @@ function cargarLibro() {
 
 // Función para traer los libros
 function cargarUsuario() {
-    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
     $.ajax({
         url: urlUsuario,
@@ -362,7 +367,7 @@ function cargarUsuario() {
 
 function updatePrestamo() {
     var id = document.getElementById("id").value;
-    consultarPrestamoID(id);
+    
     let formData = {
         "fecha_prestamo": document.getElementById("fecha_prestamo").value,
         "fecha_devolucion": document.getElementById("fecha_devolucion").value,

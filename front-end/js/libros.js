@@ -1,6 +1,30 @@
 //Se almacena la URL de la API
-//let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
-let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
+let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
+//let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
+
+document.getElementById("titulo").addEventListener("keypress",soloLetras);
+
+/*
+Este método solo permite letras
+*/
+
+function soloLetras(event){
+    console.log("LLave presionada: "+event.key);
+    console.log("Codigo tecla: "+event.keyCode);
+  
+    const caracteresNoPermitidos = [
+      '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']',
+      '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~'
+    ]; // Lista de caracteres no permitidos
+  
+   
+  
+    // Verificar si el carácter no está permitido
+    if (caracteresNoPermitidos.includes(event.key)) {
+      event.preventDefault(); // Prevenir la entrada del carácter
+      return;
+    }
+  }
 
 function listarLibro() {
     $.ajax({
