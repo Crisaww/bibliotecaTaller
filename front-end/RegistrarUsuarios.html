@@ -207,29 +207,30 @@
                   </div>
 
                   <div class="col-md-4">
-                    <label for="tipo_usuario" class="form-label">Usuario*</label>
+                    <label for="tipo_usuario" class="form-label">Tipo de usuario*</label>
                      <select name="tipo_usuario" id="tipo_usuario" class="form-select" onfocusout="validarUsuario(this);">
                         <option selected disabled value="">Seleccione los usuarios...</option>
-                        <option value="1">Lector</option>
-                        <option value="2">Bibliotecario</option>
-                        <option value="3">Administrador</option>
+                        <option value="Lector">Lector</option>
+                        <option value="Bibliotecario">Bibliotecario</option>
+                        <option value="Administrador">Administrador</option>
                     </select>
                   </div>
-              
-                  
-                  
-                  <div class="col-6" style=" display: flex;justify-content: end;">
-                    <button class="buttonRegistrar" type="button" onclick="RegistrarUsuario();">Registrar</button>
-                  </div>
+          
+                  <div class="col-12" style="display: flex; justify-content: center; ">
+                    <div class="col-6" style="display: flex; justify-content: end; padding-right:10px;">
+                      <button class="buttonRegistrar" type="button" onclick="RegistrarUsuario();">Registrar</button>
+                    </div>
 
-                  <div class="col-6" style=" display: flex;justify-content: start;">
-                    
-                    <button class="buttonRegistrar" type="button" onclick="LimpiarUsuario();" >Limpiar</button>
+                    <div class="col-6" style="display: flex; justify-content: start; padding-left:10px;">
+                      <button class="buttonRegistrar" type="button" onclick="LimpiarUsuario();" >Limpiar</button>
+                    </div>
                   </div>
-          
-          
+                  
+
+                 
               
              </div>
+             
           
             
           </div>

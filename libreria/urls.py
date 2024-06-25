@@ -5,23 +5,23 @@ from rest_framework import routers
 
 from libreria import views
 
-router=routers.DefaultRouter()
-router.register(r'',views.libroView,'/libro')
+routerLibro=routers.DefaultRouter()
+routerLibro.register(r'',views.libroView,'/libro')
 
 routerUsuario=routers.DefaultRouter()
 routerUsuario.register(r'',views.usuarioView,'/usuario')
 
-#router=routers.DefaultRouter()
-router.register(r'',views.prestamoView,'/prestamo')
+routerPrestamo=routers.DefaultRouter()
+routerPrestamo.register(r'',views.prestamoView,'/prestamo')
 
-#router=routers.DefaultRouter()
-router.register(r'',views.multaView,'/multa')
+routerMulta=routers.DefaultRouter()
+routerMulta.register(r'',views.multaView,'/multa')
 
 urlpatterns = [
-    #path("api/v1/libro/", include(router.urls)),
+    path("api/v1/libro/", include(routerLibro.urls)),
     path("api/v1/usuario/", include(routerUsuario.urls)),
-    path("api/v1/prestamo/", include(router.urls)),
-    path("api/v1/multa/", include(router.urls)),
+    path("api/v1/prestamo/", include(routerPrestamo.urls)),
+    path("api/v1/multa/", include(routerMulta.urls)),
     path("docs/",include_docs_urls(title="Tienda API"))
 ]
 

@@ -21,45 +21,63 @@ class libro(models.Model):
     
     
 class usuario(models.Model):
+    LECTOR = 'Lector'
+    BIBLIOTECARIO = 'Bibliotecario'
+    ADMINISTRADOR = 'Administrador'
+    
+    
+    TIPO_USUARIO_CHOICES = [
+        (LECTOR, 'Lector'),
+        (BIBLIOTECARIO, 'Bibliotecario'),
+        (ADMINISTRADOR, 'Administrador'),
+    ]
     
     nombreUsuario = models.CharField(max_length=60)
     direccionResidencia = models.CharField(max_length=60)
     correo = models.CharField(max_length=150)
-    tipo_usuario = [
-        (1, 'Lector'),
-        (2, 'Bibliotecario'),
-        (3, 'Administrador')
-    ]
-    tipoUsuario = models.IntegerField(choices=tipo_usuario)
+    
+    tipo_usuario = models.CharField(max_length=20, choices=TIPO_USUARIO_CHOICES)
+    
     def __str__(self):
         return self.nombreUsuario
 
 class prestamo(models.Model):
-    estado_prestamo = [
-        (1, 'Préstamo'),
-        (2, 'Entregado'),
-        (3, 'Cancelado')
+    PRESTAMO = 'Prestamo'
+    ENTREGADO = 'Entregado'
+    CANCELADO = 'Cancelado'
+    
+    
+    TIPO_PRESTAMO_CHOICES = [
+        (PRESTAMO, 'Prestamo'),
+        (ENTREGADO, 'Entregado'),
+        (CANCELADO, 'Cancelado'),
     ]
     fecha_prestamo = models.DateField()
     fecha_devolucion = models.DateField()
     usuario = models.ForeignKey(usuario, related_name='prestamo', on_delete=models.PROTECT)
     libro = models.ForeignKey(libro, related_name='prestamo', on_delete=models.CASCADE)
-    estado_prestamo = models.IntegerField(choices=estado_prestamo)
+    estado_prestamo = models.CharField(max_length=20, choices=TIPO_PRESTAMO_CHOICES)
      
     def __str__(self):
-        return self.title
+        return self.fecha_prestamo
     
 
 class multa(models.Model):
-    estado_multa  = [
-        (1, 'Pagada'),
-        (2, 'Pendiente')  
+    PAGADA = 'Pagada'
+    PENDIENTE = 'Pendiente'
+    
+    
+    
+    TIPO_MULTA_CHOICES = [
+        (PAGADA, 'Pagada'),
+        (PENDIENTE, 'Pendiente'),
+        
     ]
     valor_multa = models.IntegerField()
     fecha_multa = models.DateField()
     usuario = models.ForeignKey(usuario, related_name='multa', on_delete=models.PROTECT)
     prestamo = models.ForeignKey(libro, related_name='multa', on_delete=models.CASCADE)
-    estado_multa = models.IntegerField(choices=estado_multa)
+    estado_multa = models.CharField(max_length=20, choices=TIPO_MULTA_CHOICES)
      
     def __str__(self):
         return self.title
