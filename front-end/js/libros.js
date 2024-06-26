@@ -3,21 +3,23 @@ let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
 //let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
 
 document.getElementById("titulo").addEventListener("keypress",soloLetras);
-
-/*
-Este método solo permite letras
-*/
+document.getElementById("autor").addEventListener("keypress",soloLetras);
+document.getElementById("isbn").addEventListener("keypress",soloLetras2);
+document.getElementById("genero").addEventListener("keypress",soloLetras2);
 
 function soloLetras(event){
     console.log("LLave presionada: "+event.key);
     console.log("Codigo tecla: "+event.keyCode);
   
     const caracteresNoPermitidos = [
-      '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']',
+      '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '[', ']',
       '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~'
     ]; // Lista de caracteres no permitidos
   
-   
+    /*
+    Este método solo permite letras
+    */
+    
   
     // Verificar si el carácter no está permitido
     if (caracteresNoPermitidos.includes(event.key)) {
@@ -25,6 +27,11 @@ function soloLetras(event){
       return;
     }
   }
+
+
+
+
+
 
 function listarLibro() {
     $.ajax({
