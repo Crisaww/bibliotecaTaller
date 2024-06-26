@@ -4,8 +4,8 @@ let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
 
 document.getElementById("titulo").addEventListener("keypress",soloLetras);
 document.getElementById("autor").addEventListener("keypress",soloLetras);
-document.getElementById("isbn").addEventListener("keypress",soloLetras2);
-document.getElementById("genero").addEventListener("keypress",soloLetras2);
+document.getElementById("isbn").addEventListener("keypress",soloLetras);
+document.getElementById("genero").addEventListener("keypress",soloLetras);
 
 function soloLetras(event){
     console.log("LLave presionada: "+event.key);
@@ -216,7 +216,7 @@ function validarAutor(NombreAutor) {
 
 function validarIsbn(Isbn){
     var valido=true;
-    if(Isbn.value.length <=0 || Isbn.value.length > 13){
+    if(Isbn.value.length <=0 || Isbn.value.length > 17){
         valido=false;
     }
 

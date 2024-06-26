@@ -15,9 +15,9 @@ class libroView(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['$titulo', '$autor', '$genero', '$isbn']
     
-class ListarLibrosViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    serializer_class = libroSerializer
-    queryset = libro.objects.all()
+# class ListarLibrosViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+#     serializer_class = libroSerializer
+#     queryset = libro.objects.all()
     
 
 class usuarioView(viewsets.ModelViewSet):

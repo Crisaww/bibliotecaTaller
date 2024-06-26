@@ -28,9 +28,10 @@ function listarPrestamo() {
                 celdaId.innerText = result[i]["id"];
                 celdaFechaPrestamo.innerText = result[i]["fecha_prestamo"];
                 celdaFechaDevolucion.innerText = result[i]["fecha_devolucion"];
-                celdaUsuario.innerText = nombreUsuarioCompleto = result[i]["usuario"]["nombreUsuario"];
-                celdaLibro.innerText = nombreLibroCompleto = result[i]["libro"]["titulo"];
+                obtenerNombreUsuario(result[i]["usuario"], celdaUsuario);
+                obtenerTituloLibro(result[i]["libro"], celdaLibro);
                 celdaEstadoPrestamo.innerText = result[i]["estado_prestamo"];
+                
             
 
     
@@ -82,6 +83,34 @@ function listarPrestamo() {
         }
     })
  
+}
+
+function obtenerNombreUsuario(id, celdaUsuario) {
+    // Hacer una petición AJAX para obtener el nombre del usuario
+    $.ajax({
+        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        type: 'GET',
+        success: function (usuario) {
+            celdaUsuario.innerText = usuario.nombreUsuario;
+        },
+        error: function (error) {
+            console.error('Error obteniendo nombre de usuario: ', error);
+        }
+    });
+}
+
+function obtenerTituloLibro(id, celdaLibro) {
+    // Hacer una petición AJAX para obtener el título del libro
+    $.ajax({
+        url: 'http://10.192.66.25:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        type: 'GET',
+        success: function (libro) {
+            celdaLibro.innerText = libro.titulo;
+        },
+        error: function (error) {
+            console.error('Error obteniendo título de libro: ', error);
+        }
+    });
 }
 
 function RegistrarPrestamo() {
@@ -248,6 +277,10 @@ function LimpiarPrestamo(){
 }
 
 
+  
+
+
+
 
 // funcion  de deshabilitar prestamo
 function eliminarPrestamo(id){
@@ -312,7 +345,7 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarLibro() {
-    let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/listar-libros/";
+    let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/libro/";
     //let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
 
     $.ajax({

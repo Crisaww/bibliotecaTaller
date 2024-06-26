@@ -29,6 +29,7 @@ class libroSerializer(serializers.ModelSerializer):
         #     'num_ejem_disponibles',
         #     'num_ejem_ocupados'
         # }
+
         
 class usuarioSerializer(serializers.ModelSerializer):
     
@@ -48,11 +49,20 @@ class usuarioSerializer(serializers.ModelSerializer):
         #     'num_ejem_disponibles',
         #     'num_ejem_ocupados'
         # }
-        
+
+            
 class prestamoSerializer(serializers.ModelSerializer):
     
-    libro=libroSerializer()
-    usuario=usuarioSerializer()
+    libro = serializers.SlugRelatedField(slug_field='id', queryset=libro.objects.all())
+    usuario = serializers.SlugRelatedField(slug_field='id', queryset=usuario.objects.all())
+
+    
+    # libro=libroSerializer()
+    # usuario=usuarioSerializer()
+    
+    # listarLibroSerializer()
+    # listaUsuarioSerializer()
+    
     
     #Agregar los campos necesarios a mostrar
     #si se desea agregar todos los campos se 

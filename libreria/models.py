@@ -11,7 +11,7 @@ class libro(models.Model):
     
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=60)
-    isbn = models.CharField(max_length=13)
+    isbn = models.CharField(max_length=17)
     genero = models.CharField(max_length=10)
     num_ejem_disponibles = models.IntegerField()
     num_ejem_ocupados = models.IntegerField()
@@ -58,8 +58,8 @@ class prestamo(models.Model):
     libro = models.ForeignKey(libro, related_name='prestamo', on_delete=models.CASCADE)
     estado_prestamo = models.CharField(max_length=20, choices=TIPO_PRESTAMO_CHOICES)
      
-    def __str__(self):
-        return self.fecha_prestamo
+    def _str_(self):
+        return f"Prestamo de {self.libro.titulo} a {self.usuario.nombreUsuario}"
     
 
 class multa(models.Model):

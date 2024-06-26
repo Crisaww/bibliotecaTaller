@@ -186,7 +186,7 @@
                                     <th scope="col">Fecha de préstamo</th>
                                     <th scope="col">Fecha de devolución</th>
                                     <th scope="col">Usuario</th>
-                                    <th scope="col">Libro prestado a:</th>
+                                    <th scope="col">Libro</th>
                                     <th scope="col">Estado del préstamo</th>
                                     <th scope="col">Editar</th>
                                 </tr>
@@ -195,7 +195,7 @@
                         </table> 
                     </div>
                 </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-right: 300px;">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-right: 300px;" >
                   <div class="modal-dialog modal-dialog-scrollable">
                       <div class="modal-content" style="width: 800px;">
                           <div class="modal-header">
@@ -221,7 +221,7 @@
                                     <input type="date" class="form-control" name="fecha_devolucion" id="fecha_devolucion" onfocusout="validarFechaDevolucion(this);" >
                                   </div>
                 
-                                  <div class="col-md-4">
+                                  <div class="col-md-4" >
                                     <label for="usuario" class="form-label">Usuario que realiza el préstamo*</label>
                                      <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuarioPrestamo(this);">
                                         <option selected disabled value="">Usuario...</option>
@@ -232,7 +232,7 @@
                                   </div>
                 
                                   <div class="col-md-4">
-                                    <label for="libro" class="form-label">Libro prestado*</label>
+                                    <label for="libro" class="form-label">Libro*</label>
                                      <select name="libro" id="libro" class="form-select" onfocusout="validarLibroPrestado(this);">
                                         <option selected disabled value="">Libro...</option>
                                         <option value=""></option>

@@ -17,15 +17,15 @@ routerPrestamo.register(r'',views.prestamoView,'/prestamo')
 routerMulta=routers.DefaultRouter()
 routerMulta.register(r'',views.multaView,'/multa')
 
-routerListaLibros=routers.DefaultRouter()
-routerListaLibros.register(r'', views.ListarLibrosViewSet,'/listar-libros')
+# routerListaLibros=routers.DefaultRouter()
+# routerListaLibros.register(r'', views.ListarLibrosViewSet,'/listar-libros')
 
 urlpatterns = [
     path("api/v1/libro/", include(routerLibro.urls)),
     path("api/v1/usuario/", include(routerUsuario.urls)),
     path("api/v1/prestamo/", include(routerPrestamo.urls)),
     path("api/v1/multa/", include(routerMulta.urls)),
-    path("api/v1/listar-libros/", include(routerListaLibros.urls)),
+    # path("api/v1/listar-libros/", include(routerListaLibros.urls)),
     path("docs/",include_docs_urls(title="Tienda API"))
 ]
 
