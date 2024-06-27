@@ -59,7 +59,7 @@ class prestamo(models.Model):
     estado_prestamo = models.CharField(max_length=20, choices=TIPO_PRESTAMO_CHOICES)
      
     def _str_(self):
-        return f"Prestamo de {self.libro.titulo} a {self.usuario.nombreUsuario}"
+        return f"Prestamo de {self.libro.titulo} a {self.usuario.nombreUsuario} ({self.estado_prestamo})"
     
 
 class multa(models.Model):
@@ -76,12 +76,11 @@ class multa(models.Model):
     valor_multa = models.IntegerField()
     fecha_multa = models.DateField()
     usuario = models.ForeignKey(usuario, related_name='multa', on_delete=models.PROTECT)
-    prestamo = models.ForeignKey(libro, related_name='multa', on_delete=models.CASCADE)
+    prestamo = models.ForeignKey(prestamo, related_name='multa', on_delete=models.CASCADE)
     estado_multa = models.CharField(max_length=20, choices=TIPO_MULTA_CHOICES)
      
-    def __str__(self):
-        return self.title
-        
+    def _str_(self):
+        return f"Multa de {self.valor_multa} para {self.usuario.nombreUsuario} ({self.prestamo.estado_prestamo})"
     
     
     

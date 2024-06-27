@@ -31,6 +31,7 @@ function listarPrestamo() {
                 obtenerNombreUsuario(result[i]["usuario"], celdaUsuario);
                 obtenerTituloLibro(result[i]["libro"], celdaLibro);
                 celdaEstadoPrestamo.innerText = result[i]["estado_prestamo"];
+
                 
             
 
@@ -324,14 +325,15 @@ function eliminarPrestamo(id){
 function consultarPrestamoID(id){
     //alert(id);
     $.ajax({
-        url:url+id,
+        url: url + id+"/",
         type:"GET",
         success: function(result){
+            
             document.getElementById("id").value=result["id"];
             document.getElementById("fecha_prestamo").value = result["fecha_prestamo"];
             document.getElementById("fecha_devolucion").value=result["fecha_devolucion"];
-            document.getElementById("usuario").value=result[ "usuario"]["id"];
-            document.getElementById("libro").value=result[ "libro"]["id"];
+            document.getElementById("usuario").value=result[ "usuario"];
+            document.getElementById("libro").value=result[ "libro"];
             document.getElementById("estado_prestamo").value=result[ "estado_prestamo"];
         }
     });

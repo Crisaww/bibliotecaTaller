@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/multas.js"></script>
   </head>
-  <body>
+  <body onload="CargarFormulario()">
     <div class="wrapper">
       <!-- Sidebar -->
       <div class="sidebar" data-background-color="dark">
@@ -191,6 +191,15 @@
                     <label for="usuario" class="form-label">Usuario que se va a multar*</label>
                      <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuarioMulta(this);">
                         <option selected disabled value="">Usuario...</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="prestamo" class="form-label">Estado del préstamo*</label>
+                     <select name="prestamo" id="prestamo" class="form-select" onfocusout="validarPrestamoMulta(this);">
+                        <option selected disabled value="">Estado préstamo...</option>
                         <option value=""></option>
                         <option value=""></option>
                     </select>

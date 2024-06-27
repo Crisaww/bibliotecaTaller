@@ -31,6 +31,7 @@ class prestamoView(viewsets.ModelViewSet):
     queryset = prestamo.objects.all()
     
 
+    
 class multaView(viewsets.ModelViewSet):
     serializer_class = multaSerializer
     queryset = multa.objects.all()

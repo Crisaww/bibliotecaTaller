@@ -14,22 +14,22 @@ function listarMulta() {
                //se crea una etiqueta tr por cada registro
                 let trRegistro = document.createElement("tr");//fila por cada registro de la tabla
                 let celdaId = document.createElement("td");
-                let celdaFechaPrestamo = document.createElement("td");
-                let celdaFechaDevolucion = document.createElement("td");
-                let celdaUsuario = document.createElement("td");
-                let celdaLibro = document.createElement("td");
+                let celdaUsuarioMultado = document.createElement("td");
                 let celdaEstadoPrestamo = document.createElement("td");
+                let celdaValorMulta = document.createElement("td");
+                let celdaFechaMulta = document.createElement("td");
             
                
                 
                 //almacenamos en valor
                 
                 celdaId.innerText = result[i]["id"];
-                celdaFechaPrestamo.innerText = result[i]["fecha_prestamo"];
-                celdaFechaDevolucion.innerText = result[i]["fecha_devolucion"];
-                celdaUsuario.innerText = nombreUsuarioCompleto = result[i]["usuario"]["nombreUsuario"];
-                celdaLibro.innerText = nombreLibroCompleto = result[i]["libro"]["titulo"];
-                celdaEstadoPrestamo.innerText = result[i]["estado_prestamo"];
+                celdaValorMulta.innerText = result[i]["valor_multa"];
+                celdaFechaMulta.innerText = result[i]["fecha_multa"];
+                obtenerNombreUsuario(result[i]["usuario"], celdaUsuarioMultado);
+                obtenerEstadoPrestamo(result[i]["prestamo"], celdaEstadoPrestamo);
+                
+
             
 
     
@@ -37,11 +37,12 @@ function listarMulta() {
                 //agregando a los td a su respectivo th y agregandolos a la fila
 
                 trRegistro.appendChild(celdaId);
-                trRegistro.appendChild(celdaFechaPrestamo);
-                trRegistro.appendChild(celdaFechaDevolucion);
-                trRegistro.appendChild(celdaUsuario);
-                trRegistro.appendChild(celdaLibro);
+                trRegistro.appendChild(celdaValorMulta);
+                trRegistro.appendChild(celdaFechaMulta);
+                trRegistro.appendChild(celdaUsuarioMultado);
                 trRegistro.appendChild(celdaEstadoPrestamo);
+                
+               
                 
 
                 
@@ -83,19 +84,48 @@ function listarMulta() {
  
 }
 
+function obtenerNombreUsuario(id, celdaUsuario) {
+    // Hacer una petición AJAX para obtener el nombre del usuario
+    $.ajax({
+        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        type: 'GET',
+        success: function (usuario) {
+            celdaUsuario.innerText = usuario.nombreUsuario;
+        },
+        error: function (error) {
+            console.error('Error obteniendo nombre de usuario: ', error);
+        }
+    });
+}
+
+function obtenerEstadoPrestamo(id, celdaEstadoPrestamo) {
+    // Hacer una petición AJAX para obtener el título del libro
+    $.ajax({
+        url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        type: 'GET',
+        success: function (prestamo) {
+            celdaEstadoPrestamo.innerText = prestamo.estado_prestamo;
+        },
+        error: function (error) {
+            console.error('Error obteniendo estado del préstamo: ', error);
+        }
+    });
+}
+
+
 function RegistrarMulta() {
-    let fecha_prestamo = document.getElementById("fecha_prestamo").value;
-    let fecha_devolucion = document.getElementById("fecha_devolucion").value;
+    let valor_multa = document.getElementById("valor_multa").value;
+    let fecha_multa = document.getElementById("fecha_multa").value;
     let usuario = document.getElementById("usuario").value;
-    let libro = document.getElementById("libro").value;
-    let estado_prestamo = document.getElementById("estado_prestamo").value;
+    let prestamo = document.getElementById("prestamo").value;
+    let estado_multa = document.getElementById("estado_multa").value;
 
     let formData = {
-        "fecha_prestamo": fecha_prestamo,
-        "fecha_devolucion": fecha_devolucion,
+        "valor_multa": valor_multa,
+        "fecha_multa": fecha_multa,
         "usuario": usuario,
-        "libro": libro,
-        "estado_prestamo": estado_prestamo
+        "prestamo": prestamo,
+        "estado_multa": estado_multa
         
     };
 
@@ -129,91 +159,91 @@ function RegistrarMulta() {
 
 function validarCampos() {
    
-    var fecha_prestamo = document.getElementById("fecha_prestamo");
-    var fecha_devolucion = document.getElementById("fecha_devolucion");
+    var valor_multa = document.getElementById("valor_multa");
+    var fecha_multa = document.getElementById("fecha_multa");
     var usuario = document.getElementById("usuario"); 
-    var libro = document.getElementById("libro"); 
-    var estado_prestamo = document.getElementById("estado_prestamo"); 
+    var prestamo = document.getElementById("prestamo"); 
+    var estado_multa = document.getElementById("estado_multa"); 
  
  
    
     
 
-    return validarFechaPrestamo(fecha_prestamo) && validarFechaDevolucion(fecha_devolucion) && validarUsuarioMulta(usuario) 
-    && validarLibroPrestado(libro) && validarEstadoPrestamo(estado_prestamo);
+    return validarValorMulta(valor_multa) && validarFechaMulta(fecha_multa) && validarUsuarioMulta(usuario) 
+    && validarPrestamoMulta(prestamo) && validarEstadoMulta(estado_multa);
 }
 
-function validarFechaPrestamo(fechaPrestamo) {
-    if (!fechaPrestamo || !fechaPrestamo.value) {
+function validarValorMulta(valorMulta) {
+    if (!valorMulta || !valorMulta.value) {
         return false;
     }
 
-    let valor = fechaPrestamo.value;
+    let valor = valorMulta.value;
+    let valido = true;
+    if (valor.length < 1 || valor.length > 6) {
+        valido = false;
+    }
+
+    if (valido) {
+        valorMulta.className = "form-control is-valid";
+    } else {
+        valorMulta.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
+
+function validarFechaMulta(fechaMulta) {
+    if (!fechaMulta || !fechaMulta.value) {
+        return false;
+    }
+
+    let valor = fechaMulta.value;
     let valido = true;
     if (valor.length < 1 || valor.length > 60) {
         valido = false;
     }
 
     if (valido) {
-        fechaPrestamo.className = "form-control is-valid";
+        fechaMulta.className = "form-control is-valid";
     } else {
-        fechaPrestamo.className = "form-control is-invalid";
+        fechaMulta.className = "form-control is-invalid";
     }
     return valido;
 }
 
 
-function validarFechaDevolucion(fechaDevolucion) {
-    if (!fechaDevolucion || !fechaDevolucion.value) {
-        return false;
-    }
-
-    let valor = fechaDevolucion.value;
-    let valido = true;
-    if (valor.length < 1 || valor.length > 60) {
-        valido = false;
-    }
-
-    if (valido) {
-        fechaDevolucion.className = "form-control is-valid";
-    } else {
-        fechaDevolucion.className = "form-control is-invalid";
-    }
-    return valido;
-}
-
-
-function validarUsuarioMulta(usuarioPrestamo){
+function validarUsuarioMulta(usuarioMulta){
     var valido=true;
-    if(usuarioPrestamo.value.length <=0 || usuarioPrestamo.value.length > 45){
+    if(usuarioMulta.value.length <=0 || usuarioMulta.value.length > 45){
         valido=false;
     }
 
     if (valido) {
-        usuarioPrestamo.className = "form-control is-valid"
+        usuarioMulta.className = "form-control is-valid"
     }
     else{
-        usuarioPrestamo.className = "form-control is-invalid"
+        usuarioMulta.className = "form-control is-invalid"
     }
     return valido;
 }
 
-function validarLibroPrestado(libroPrestado){
+function validarPrestamoMulta(prestamoMulta){
     var valido=true;
-    if(libroPrestado.value.length <=0 || libroPrestado.value.length > 100){
+    if(prestamoMulta.value.length <=0 || prestamoMulta.value.length > 20){
         valido=false;
     }
 
     if (valido) {
-        libroPrestado.className = "form-control is-valid"
+        prestamoMulta.className = "form-control is-valid"
     }
     else{
-        libroPrestado.className = "form-control is-invalid"
+        prestamoMulta.className = "form-control is-invalid"
     }
     return valido;
 }
 
-function validarEstadoPrestamo(estado){
+function validarEstadoMulta(estado){
     var valido=true;
     if(estado.value.length <= 0 || estado.value.length > 20){
         valido=false;
@@ -237,29 +267,29 @@ function consultarMultaID(id){
         type:"GET",
         success: function(result){
             document.getElementById("id").value=result["id"];
-            document.getElementById("fecha_prestamo").value = result["fecha_prestamo"];
-            document.getElementById("fecha_devolucion").value=result["fecha_devolucion"];
+            document.getElementById("valor_multa").value = result["valor_multa"];
+            document.getElementById("fecha_multa").value=result["fecha_multa"];
             document.getElementById("usuario").value=result[ "usuario"]["nombreUsuario"];
-            document.getElementById("libro").value=result[ "libro"]["titulo"];
-            document.getElementById("estado_prestamo").value=result[ "estado_prestamo"];
+            document.getElementById("prestamo").value=result[ "prestamo"]["estado_prestamo"];
+            document.getElementById("estado_multa").value=result[ "estado_multa"];
   
         }
     });
   }
 
 function LimpiarMulta(){
-    document.getElementById("fecha_prestamo").className="form-control";
-    document.getElementById("fecha_devolucion").className="form-control";
+    document.getElementById("valor_multa").className="form-control";
+    document.getElementById("fecha_multa").className="form-control";
     document.getElementById("usuario").className="form-control";
-    document.getElementById("libro").className="form-control";
-    document.getElementById("estado_prestamo").className="form-control";
+    document.getElementById("prestamo").className="form-control";
+    document.getElementById("estado_multa").className="form-control";
     
 
-    document.getElementById("fecha_prestamo").value = "";
-    document.getElementById("fecha_devolucion").value = "";
+    document.getElementById("valor_multa").value = "";
+    document.getElementById("fecha_multa").value = "";
     document.getElementById("usuario").value = "";
-    document.getElementById("libro").value = "";
-    document.getElementById("estado_prestamo").value = "";
+    document.getElementById("prestamo").value = "";
+    document.getElementById("estado_multa").value = "";
  
  
 }
@@ -285,7 +315,7 @@ function eliminarMulta(id){
           success: function(result){
             swal.fire(
               'Eliminado',
-              'El usuario ha sido eliminado ',
+              'La multa ha sido eliminada',
               'success'
             );
             listarMulta();//recarga la lista de usuarios
@@ -303,26 +333,26 @@ function eliminarMulta(id){
   }
 
 function CargarFormulario() {
-    cargarLibro();
     cargarUsuario();
+    cargarPrestamo();
 }
 
 // Función para traer los libros
-function cargarLibro() {
-    let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
+function cargarPrestamo() {
+    let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo/";
 
     $.ajax({
-        url: urlLibro,
+        url: urlPrestamo,
         type: "GET",
         success: function (result) {
-            let libro = document.getElementById("libro");
-            libro.innerHTML = '<option selected disabled value="">Libro...</option>'; // Añadir opción por defecto
+            let prestamo = document.getElementById("prestamo");
+            prestamo.innerHTML = '<option selected disabled value="">Estado préstamo...</option>'; // Añadir opción por defecto
             
             for (let i = 0; i < result.length; i++) {
-                let nombreLibroCompleto = document.createElement("option");
-                nombreLibroCompleto.value = result[i]["id"];
-                nombreLibroCompleto.innerText = result[i]["titulo"];
-                libro.appendChild(nombreLibroCompleto);
+                let estadoPrestamo = document.createElement("option");
+                estadoPrestamo.value = result[i]["id"];
+                estadoPrestamo.innerText = result[i]["estado_prestamo"];
+                prestamo.appendChild(estadoPrestamo);
             }
         },
     });
@@ -352,23 +382,17 @@ function cargarUsuario() {
 }
 
 
-
-
-
-
-
-
 //Cuando le damos click al boton de guardar, este llamara a la function UpdateProducto por medio del onclick******
 
 function updateMulta() {
     var id = document.getElementById("id").value;
     consultarMultaID(id);
     let formData = {
-        "fecha_prestamo": document.getElementById("fecha_prestamo").value,
-        "fecha_devolucion": document.getElementById("fecha_devolucion").value,
+        "valor_multa": document.getElementById("valor_multa").value,
+        "fecha_multa": document.getElementById("fecha_multa").value,
         "usuario": document.getElementById("usuario").value,
-        "libro": document.getElementById("libro").value,
-        "estado_prestamo": document.getElementById("estado_prestamo").value
+        "prestamo": document.getElementById("prestamo").value,
+        "estado_multa": document.getElementById("estado_multa").value
     };
 
 

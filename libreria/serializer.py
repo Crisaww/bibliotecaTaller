@@ -71,17 +71,11 @@ class prestamoSerializer(serializers.ModelSerializer):
     class Meta:
         model=prestamo
         fields ='__all__'
-        # fields = {
-        #     'id',
-        #     'titulo',
-        #     'autor',
-        #     'isbn',
-        #     'genero',
-        #     'num_ejem_disponibles',
-        #     'num_ejem_ocupados'
-        # }
+
         
 class multaSerializer(serializers.ModelSerializer):
+    usuario = serializers.SlugRelatedField(slug_field='id', queryset=usuario.objects.all())
+    prestamo = serializers.SlugRelatedField(slug_field='id', queryset=prestamo.objects.all())
     
     #Agregar los campos necesarios a mostrar
     #si se desea agregar todos los campos se 
