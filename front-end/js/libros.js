@@ -28,12 +28,13 @@ function soloLetras(event){
     }
   }
 
-
-
-
-
-
 function listarLibro() {
+
+    var busqueda = document.getElementById("buscar").value;
+    var urlBusqueda = url;
+    if (busqueda!=""){
+        urlBusqueda+="/busquedafiltro/"+busqueda;
+    }
     $.ajax({
         url:url,
         type: "GET",
@@ -110,7 +111,7 @@ function listarLibro() {
         error:function(error){
             alert("Error en la peticion ${error}");
         }
-    })
+    });
  
 }
 

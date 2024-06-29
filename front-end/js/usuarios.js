@@ -33,6 +33,11 @@ function soloLetras(event){
 
 
 function listarUsuario() {
+    var busqueda = document.getElementById("buscar").value;
+    var urlBusqueda = url;
+    if (busqueda!=""){
+        urlBusqueda+="busquedafiltro/"+busqueda;
+    }
     $.ajax({
         url:url,
         type: "GET",

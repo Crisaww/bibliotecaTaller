@@ -17,11 +17,15 @@ routerPrestamo.register(r'',views.prestamoView,'/prestamo')
 routerMulta=routers.DefaultRouter()
 routerMulta.register(r'',views.multaView,'/multa')
 
+# routerBusquedaLibro=routers.DefaultRouter()
+# routerBusquedaLibro.register(r'',views.multaView,'/busquedafiltro')
+
 # routerListaLibros=routers.DefaultRouter()
 # routerListaLibros.register(r'', views.ListarLibrosViewSet,'/listar-libros')
 
 urlpatterns = [
     path("api/v1/libro/", include(routerLibro.urls)),
+    # path("api/v1/libro/", include(routerBusquedaLibro.urls)),
     path("api/v1/usuario/", include(routerUsuario.urls)),
     path("api/v1/prestamo/", include(routerPrestamo.urls)),
     path("api/v1/multa/", include(routerMulta.urls)),

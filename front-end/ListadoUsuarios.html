@@ -42,8 +42,7 @@
         
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="./js/usuarios.js"></script>
+    
 </head>
 <body onload="listarUsuario()">
     <div class="wrapper">
@@ -172,6 +171,21 @@
                         <div class="col-12" style="text-align: center;">
                             <h1 style="margin: 0; color: white;">Listado de usuarios</h1>
                         </div>
+
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input type="search" class="form-control" placeholder="Busca por correo" id="buscar" aria-label="Recipient's username" aria-describedby="button-addon2" >
+                                <button class="btn btn-success" type="button" onclick="listarUsuario();">Buscar</button>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input type="search" class="form-control" placeholder="Busca por nombre" id="buscar" aria-label="Recipient's username" aria-describedby="button-addon2" >
+                                <button class="btn btn-success" type="button" onclick="listarUsuario();">Buscar</button>
+                            </div>
+                        </div>
+
                         <div class="col-12" style="padding-left: 0; padding-right: 0;">
                             <table class="table table-hover">
                                 <thead class="table-dark">
@@ -254,5 +268,7 @@
 
     <!-- Kaiadmin JS -->
     <script src="./js/kaiadmin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/usuarios.js"></script>
 </body>
 </html>
