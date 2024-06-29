@@ -1,6 +1,6 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/prestamo/";
-//let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+//let url="http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
 
 function listarPrestamo() {
     $.ajax({
@@ -89,7 +89,8 @@ function listarPrestamo() {
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url:"http://192.168.1.8:8000/libreria/api/v1/usuario"+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (usuario) {
             celdaUsuario.innerText = usuario.nombreUsuario;
@@ -103,7 +104,8 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerTituloLibro(id, celdaLibro) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (libro) {
             celdaLibro.innerText = libro.titulo;
@@ -181,7 +183,7 @@ function validarFechaPrestamo(fechaPrestamo) {
 
     let valor = fechaPrestamo.value;
     let valido = true;
-    if (valor.length < 1 || valor.length > 60) {
+    if (valor.length < 1 || valor.length > 9) {
         valido = false;
     }
 
@@ -201,7 +203,7 @@ function validarFechaDevolucion(fechaDevolucion) {
 
     let valor = fechaDevolucion.value;
     let valido = true;
-    if (valor.length < 1 || valor.length > 60) {
+    if (valor.length < 1 || valor.length > 9) {
         valido = false;
     }
 
@@ -278,11 +280,6 @@ function LimpiarPrestamo(){
 }
 
 
-  
-
-
-
-
 // funcion  de deshabilitar prestamo
 function eliminarPrestamo(id){
     swal.fire({
@@ -347,8 +344,8 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarLibro() {
-    let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/libro/";
-    //let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
+    //let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/libro/";
+    let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
 
     $.ajax({
         url: urlLibro,
@@ -370,8 +367,8 @@ function cargarLibro() {
 
 // Función para traer los libros
 function cargarUsuario() {
-    let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
-    //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
+    //let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
     $.ajax({
         url: urlUsuario,

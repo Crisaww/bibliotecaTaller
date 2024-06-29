@@ -58,7 +58,7 @@ class prestamo(models.Model):
     libro = models.ForeignKey(libro, related_name='prestamo', on_delete=models.CASCADE)
     estado_prestamo = models.CharField(max_length=20, choices=TIPO_PRESTAMO_CHOICES)
      
-    def _str_(self):
+    def __str__(self):
         return f"Prestamo de {self.libro.titulo} a {self.usuario.nombreUsuario} ({self.estado_prestamo})"
     
 
@@ -79,7 +79,7 @@ class multa(models.Model):
     prestamo = models.ForeignKey(prestamo, related_name='multa', on_delete=models.CASCADE)
     estado_multa = models.CharField(max_length=20, choices=TIPO_MULTA_CHOICES)
      
-    def _str_(self):
+    def __str__(self):
         return f"Multa de {self.valor_multa} para {self.usuario.nombreUsuario} ({self.prestamo.estado_prestamo})"
     
     

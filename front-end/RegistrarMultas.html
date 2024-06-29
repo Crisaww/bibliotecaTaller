@@ -44,8 +44,9 @@
         overflow-y: auto;
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/multas.js"></script>
+
+    
+
   </head>
   <body onload="CargarFormulario()">
     <div class="wrapper">
@@ -207,7 +208,7 @@
 
                   <div class="col-md-4">
                     <label for="valor_multa" class="form-label">Valor de la multa*</label>
-                    <input type="number" class="form-control" name="valor_multa" id="valor_multa" onfocusout="validarValorMulta(this);" >
+                    <input type="text" class="form-control" name="valor_multa" id="valor_multa" onfocusout="validarValorMulta(this);" >
                   </div>
 
                   <div class="col-md-4">
@@ -228,11 +229,11 @@
           
                   <div class="col-12" style="display: flex; justify-content: center; ">
                     <div class="col-6" style="display: flex; justify-content: end; padding-right:10px;">
-                      <button class="buttonRegistrar" type="button" onclick="RegistrarPrestamo();">Registrar</button>
+                      <button class="buttonRegistrar" type="button" onclick="RegistrarMulta();">Registrar</button>
                     </div>
 
                     <div class="col-6" style="display: flex; justify-content: start; padding-left:10px;">
-                      <button class="buttonRegistrar" type="button" onclick="LimpiarPrestamo();" >Limpiar</button>
+                      <button class="buttonRegistrar" type="button" onclick="LimpiarMulta();" >Limpiar</button>
                     </div>
                   </div>
                   
@@ -270,6 +271,11 @@
 
     <!-- Kaiadmin JS -->
     <script src="./js/kaiadmin.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/multas.js"></script>
+
+    
     
   </body>
 </html>

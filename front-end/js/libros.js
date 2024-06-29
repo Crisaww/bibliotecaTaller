@@ -1,6 +1,6 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
-//let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
+//let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
+let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
 
 document.getElementById("titulo").addEventListener("keypress",soloLetras);
 document.getElementById("autor").addEventListener("keypress",soloLetras);

@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from rest_framework import viewsets, filters, mixins
+from rest_framework import viewsets, filters
 
 from libreria.serializer import libroSerializer, multaSerializer, prestamoSerializer, usuarioSerializer
 from .models import libro, multa, prestamo, usuario
@@ -30,11 +30,12 @@ class prestamoView(viewsets.ModelViewSet):
     serializer_class = prestamoSerializer
     queryset = prestamo.objects.all()
     
-
     
 class multaView(viewsets.ModelViewSet):
     serializer_class = multaSerializer
     queryset = multa.objects.all()
+
+
 
 
     

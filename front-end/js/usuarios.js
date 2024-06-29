@@ -1,11 +1,11 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/usuario/";
-//let url="http://192.168.1.8:8000/libreria/api/v1/usuario/";
+//let url="http://10.192.66.25:8000/libreria/api/v1/usuario/";
+let url="http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
 document.getElementById("nombreUsuario").addEventListener("keypress",soloLetras);
-document.getElementById("autor").addEventListener("keypress",soloLetras);
-document.getElementById("isbn").addEventListener("keypress",soloLetras);
-document.getElementById("genero").addEventListener("keypress",soloLetras);
+document.getElementById("direccionResidencia").addEventListener("keypress",soloLetras);
+document.getElementById("correo").addEventListener("keypress",soloLetras);
+
 
 function soloLetras(event){
     console.log("LLave presionada: "+event.key);
@@ -27,6 +27,10 @@ function soloLetras(event){
       return;
     }
   }
+
+  
+
+
 
 function listarUsuario() {
     $.ajax({
@@ -201,19 +205,23 @@ function validarDireccionResidencia(DireccionResidencia) {
 }
 
 
-function validarCorreo(Correo){
-    var valido=true;
-    if(Correo.value.length <=0 || Correo.value.length > 100){
-        valido=false;
-    }
+function validarCorreo(correoE) {
+    console.log("Validando correo:", correoE.value);  // Debug
+    const correo = correoE.value;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const errorDiv = document.getElementById("correo-error");
 
-    if (valido) {
-        Correo.className = "form-control is-valid"
+    if (!regex.test(correo)) {
+        console.log("Correo no válido");  // Debug
+        correoE.classList.add("is-invalid");
+        errorDiv.style.display = "block";
+        return false;
+    } else {
+        console.log("Correo válido");  // Debug
+        correoE.classList.remove("is-invalid");
+        errorDiv.style.display = "none";
+        return true;
     }
-    else{
-        Correo.className = "form-control is-invalid"
-    }
-    return valido;
 }
 
 function validarUsuario(TipoUsuario){

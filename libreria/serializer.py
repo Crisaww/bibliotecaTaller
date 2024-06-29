@@ -93,3 +93,4 @@ class multaSerializer(serializers.ModelSerializer):
         #     'num_ejem_disponibles',
         #     'num_ejem_ocupados'
         # }
+        

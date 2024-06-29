@@ -216,7 +216,9 @@
                     
                                       <div class="col-md-4">
                                         <label for="correo" class="form-label">Correo electrónico*</label>
-                                        <input type="text" class="form-control" name="correo" id="correo" onfocusout="validarCorreo(this);" >
+                                        <input type="email" class="form-control" name="correo" id="correo" onfocusout="validarCorreo(this);" >
+                                        <span id="correo-verificado" style="color: green; display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">✔️</span>
+                                        <div id="correo-error" style="color: red; display: none;">Correo electrónico no válido</div>
                                       </div>
                     
                                       <div class="col-md-4">

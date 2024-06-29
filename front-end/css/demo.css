@@ -397,6 +397,11 @@ body[data-background-color="dark"] .demo-icon .icon-class {
       scale: 1;
     }
 
+    .is-invalid {
+      border-color: red;
+  }
+  
+
   
     
 

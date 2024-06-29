@@ -1,28 +1,50 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
-//let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+//let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
+let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
+
+document.getElementById("valor_multa").addEventListener("keypress",soloLetras);
+
+function soloLetras(event){
+    console.log("LLave presionada: "+event.key);
+    console.log("Codigo tecla: "+event.keyCode);
+  
+    const caracteresNoPermitidos = [
+      '#', '@', '%', '^', '&', '*', '(', ')', '_', '-', '+', '{', '}', '[', ']',
+      '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ]; // Lista de caracteres no permitidos
+  
+    /*
+    Este método solo permite letras
+    */
+    
+  
+    // Verificar si el carácter no está permitido
+    if (caracteresNoPermitidos.includes(event.key)) {
+      event.preventDefault(); // Prevenir la entrada del carácter
+      return;
+    }
+  }
+
+
 
 function listarMulta() {
     $.ajax({
-        url:url,
+        url: url,
         type: "GET",
-        success: function(result){//success: funcion que se ejecuta cusndo la peticion tiene exito
+        success: function(result) {
             console.log(result);
             let cuerpoTablaMulta = document.getElementById("cuerpoTablaMulta");
-            cuerpoTablaMulta.innerHTML="";
+            cuerpoTablaMulta.innerHTML = "";
             for (let i = 0; i < result.length; i++) {
-               //se crea una etiqueta tr por cada registro
-                let trRegistro = document.createElement("tr");//fila por cada registro de la tabla
+                let trRegistro = document.createElement("tr");
                 let celdaId = document.createElement("td");
-                let celdaUsuarioMultado = document.createElement("td");
-                let celdaEstadoPrestamo = document.createElement("td");
                 let celdaValorMulta = document.createElement("td");
                 let celdaFechaMulta = document.createElement("td");
-            
-               
+                let celdaUsuarioMultado = document.createElement("td");
+                let celdaEstadoPrestamo = document.createElement("td");
                 
-                //almacenamos en valor
-                
+
                 celdaId.innerText = result[i]["id"];
                 celdaValorMulta.innerText = result[i]["valor_multa"];
                 celdaFechaMulta.innerText = result[i]["fecha_multa"];
@@ -30,64 +52,52 @@ function listarMulta() {
                 obtenerEstadoPrestamo(result[i]["prestamo"], celdaEstadoPrestamo);
                 
 
-            
-
-    
-                
-                //agregando a los td a su respectivo th y agregandolos a la fila
-
                 trRegistro.appendChild(celdaId);
                 trRegistro.appendChild(celdaValorMulta);
                 trRegistro.appendChild(celdaFechaMulta);
                 trRegistro.appendChild(celdaUsuarioMultado);
                 trRegistro.appendChild(celdaEstadoPrestamo);
-                
-               
-                
 
-                
-                //boton editar 
-                let celdaOpcion= document.createElement("td");
-                let botonEditarMulta= document.createElement("button");
-                botonEditarMulta.value=result[i]["id"];
-                botonEditarMulta.innerHTML="<i class='fas fa-edit'></i> Editar"; 
+                let celdaOpcion = document.createElement("td");
+                let botonEditarMulta = document.createElement("button");
+                botonEditarMulta.value = result[i]["id"];
+                botonEditarMulta.innerHTML = "<i class='fas fa-edit'></i> Editar";
 
-                botonEditarMulta.onclick=function(e){
+                botonEditarMulta.onclick = function(e) {
                     $('#exampleModal').modal('show');
                     CargarFormulario();
-                    consultarMultaID(this.value); 
+                    consultarMultaID(this.value);
                 }
-                botonEditarMulta.className= "btn btn-danger"
+                botonEditarMulta.className = "btn btn-danger";
 
-                celdaOpcion.appendChild(botonEditarMulta); 
+                celdaOpcion.appendChild(botonEditarMulta);
                 trRegistro.appendChild(celdaOpcion);
 
-                cuerpoTablaMulta.appendChild(trRegistro);//se traen todos los registros
+                let botonEliminarMulta = document.createElement("button");
+                botonEliminarMulta.innerHTML = "<i class='fas fa-minus-circle'></i> Eliminar";
+                botonEliminarMulta.className = "btn btn-dark";
 
-                 //boton desahiblitar- la funcion de deshabilitar se encuentra abajo 
-                 let botoneliminarMulta= document.createElement("button");
-                 botoneliminarMulta.innerHTML="<i class='fas fa-minus-circle'></i> Eliminar"; 
-                 botoneliminarMulta.className="btn btn-dark"; 
- 
-                 let multaIdParaEliminar= result[i]["id"]; 
-                 botoneliminarMulta.onclick=function(){
-                   eliminarMulta(multaIdParaEliminar);
-                 }
-                 celdaOpcion.appendChild(botoneliminarMulta); 
-                 trRegistro.appendChild(celdaOpcion)
+                let multaIdParaEliminar = result[i]["id"];
+                botonEliminarMulta.onclick = function() {
+                    eliminarMulta(multaIdParaEliminar);
+                }
+                celdaOpcion.appendChild(botonEliminarMulta);
+                trRegistro.appendChild(celdaOpcion);
+
+                cuerpoTablaMulta.appendChild(trRegistro);
             }
         },
-        error:function(error){
-            alert("Error en la peticion ${error}");
+        error: function(error) {
+            alert("Error en la petición: " + error);
         }
-    })
- 
+    });
 }
 
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (usuario) {
             celdaUsuario.innerText = usuario.nombreUsuario;
@@ -101,10 +111,12 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerEstadoPrestamo(id, celdaEstadoPrestamo) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+       //url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (prestamo) {
             celdaEstadoPrestamo.innerText = prestamo.estado_prestamo;
+            
         },
         error: function (error) {
             console.error('Error obteniendo estado del préstamo: ', error);
@@ -183,6 +195,8 @@ function validarValorMulta(valorMulta) {
     if (valor.length < 1 || valor.length > 6) {
         valido = false;
     }
+
+    
 
     if (valido) {
         valorMulta.className = "form-control is-valid";
@@ -269,8 +283,8 @@ function consultarMultaID(id){
             document.getElementById("id").value=result["id"];
             document.getElementById("valor_multa").value = result["valor_multa"];
             document.getElementById("fecha_multa").value=result["fecha_multa"];
-            document.getElementById("usuario").value=result[ "usuario"]["nombreUsuario"];
-            document.getElementById("prestamo").value=result[ "prestamo"]["estado_prestamo"];
+            document.getElementById("usuario").value=result[ "usuario"];
+            document.getElementById("prestamo").value=result[ "prestamo"];
             document.getElementById("estado_multa").value=result[ "estado_multa"];
   
         }
@@ -339,7 +353,8 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarPrestamo() {
-    let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+    //let urlPrestamo = "http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+    let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo";
 
     $.ajax({
         url: urlPrestamo,
@@ -361,7 +376,8 @@ function cargarPrestamo() {
 
 // Función para traer los libros
 function cargarUsuario() {
-    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
+    //let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario";
 
     $.ajax({
         url: urlUsuario,
