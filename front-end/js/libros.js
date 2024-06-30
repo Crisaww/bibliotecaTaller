@@ -33,10 +33,11 @@ function listarLibro() {
     var busqueda = document.getElementById("buscar").value;
     var urlBusqueda = url;
     if (busqueda!=""){
-        urlBusqueda+="/busquedafiltro/"+busqueda;
-    }
+    urlBusqueda+="?search="+busqueda; 
+   
+  }
     $.ajax({
-        url:url,
+        url:urlBusqueda,
         type: "GET",
         success: function(result){//success: funcion que se ejecuta cusndo la peticion tiene exito
             console.log(result);

@@ -24,7 +24,7 @@ class usuarioView(viewsets.ModelViewSet):
     serializer_class = usuarioSerializer
     queryset = usuario.objects.all()
     filter_backends = [filters.SearchFilter]
-    search_fields = ['$nombre', '$correo']
+    search_fields = ['$nombreUsuario', '$correo']
     
 class prestamoView(viewsets.ModelViewSet):
     serializer_class = prestamoSerializer
