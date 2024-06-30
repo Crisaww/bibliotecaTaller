@@ -2,30 +2,40 @@
 //let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
 let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
 
+
+//1) Función de caracteres no permitidos
+
+//Este método le dice al sistema cuales son los caracteres que no se pueden digitar
 document.getElementById("valor_multa").addEventListener("keypress",soloLetras);
 
 function soloLetras(event){
     console.log("LLave presionada: "+event.key);
     console.log("Codigo tecla: "+event.keyCode);
-  
+    
     const caracteresNoPermitidos = [
-      '#', '@', '%', '^', '&', '*', '(', ')', '_', '-', '+', '{', '}', '[', ']',
-      '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        '#', 'º', '@', '%', '^', '&', '*', '(', ')', '_', '-', '+', '{', '}', '[', ']',
+        '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     ]; // Lista de caracteres no permitidos
-  
+    
     /*
     Este método solo permite letras
     */
-    
-  
-    // Verificar si el carácter no está permitido
-    if (caracteresNoPermitidos.includes(event.key)) {
-      event.preventDefault(); // Prevenir la entrada del carácter
-      return;
+   
+   
+   // Verificar si el carácter no está permitido
+   if (caracteresNoPermitidos.includes(event.key)) {
+       event.preventDefault(); // Prevenir la entrada del carácter
+       return;
     }
-  }
+}
 
+//2) Función para que no pegue caracteres indebidos
+
+//Para prevenir que pegue caracteres que dañen el sistema:
+document.getElementById('valor_multa').addEventListener('paste', function(e) {
+    e.preventDefault();
+});
 
 
 function listarMulta() {

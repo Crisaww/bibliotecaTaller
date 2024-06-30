@@ -209,29 +209,39 @@
                                       <div class="col-12" style="text-align: center;">
                                           <h1 style="margin: 0; color: #000000;">Actualizar usuarios</h1>
                                           <h5 style="margin: 0; color: #000000;">Todos los campos con (*) son obligatorios</h5>
+                                          <br>
                                       </div>
                                       
                                       <div class="col-md-4">
-                                        <label for="nombreUsuario" class="form-label"  style="color: #000000;">Nombre del usuario*</label>
+                                        <label for="titulo" class="form-label">
+                                            <h5 style="font-size: 15px; color:black;">Nombre del usuario*</h5>
+                                        </label>
                                         <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" onfocusout="validarNombreUsuario(this);" >
                                         <input type="hidden" id="id"> 
                                       </div>
                                     
                                     
                                       <div class="col-md-4">
-                                        <label for="direccionResidencia" class="form-label">Dirección de Residencia*</label>
+                                        <label for="titulo" class="form-label">
+                                            <h5 style="font-size: 15px; color:black;">Dirección de residencia*</h5>
+                                        </label>
                                         <input type="text" class="form-control" name="direccionResidencia" id="direccionResidencia" onfocusout="validarDireccionResidencia(this);" >
                                       </div>
                     
                                       <div class="col-md-4">
-                                        <label for="correo" class="form-label">Correo electrónico*</label>
+                                        <label for="titulo" class="form-label">
+                                            <h5 style="font-size: 15px; color:black;">Correo electrónico*</h5>
+                                        </label>
                                         <input type="email" class="form-control" name="correo" id="correo" onfocusout="validarCorreo(this);" >
                                         <span id="correo-verificado" style="color: green; display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">✔️</span>
                                         <div id="correo-error" style="color: red; display: none;">Correo electrónico no válido</div>
+                                        <br>
                                       </div>
                     
                                       <div class="col-md-4">
-                                        <label for="tipo_usuario" class="form-label">Tipo de usuario*</label>
+                                        <label for="titulo" class="form-label">
+                                            <h5 style="font-size: 15px; color:black;">Tipo de usuario*</h5>
+                                        </label>
                                          <select name="tipo_usuario" id="tipo_usuario" class="form-select" onfocusout="validarUsuario(this);">
                                             <option selected disabled value="">Seleccione los usuarios...</option>
                                             <option value="Lector">Lector</option>

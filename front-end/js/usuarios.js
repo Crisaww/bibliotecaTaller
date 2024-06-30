@@ -2,40 +2,54 @@
 //let url="http://10.192.66.25:8000/libreria/api/v1/usuario/";
 let url="http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
+//1) Función de caracteres no permitidos
+
+//Este método le dice al sistema cuales son los caracteres que no se pueden digitar
 document.getElementById("nombreUsuario").addEventListener("keypress",soloLetras);
 document.getElementById("direccionResidencia").addEventListener("keypress",soloLetras);
 document.getElementById("correo").addEventListener("keypress",soloLetras);
 
 
+
 function soloLetras(event){
     console.log("LLave presionada: "+event.key);
     console.log("Codigo tecla: "+event.keyCode);
-  
-    const caracteresNoPermitidos = [
-      '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '[', ']',
-      '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~'
-    ]; // Lista de caracteres no permitidos
-  
-    /*
-    Este método solo permite letras
-    */
     
-  
-    // Verificar si el carácter no está permitido
-    if (caracteresNoPermitidos.includes(event.key)) {
-      event.preventDefault(); // Prevenir la entrada del carácter
+    const caracteresNoPermitidos = [
+        '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '[', ']',
+        '\\', '|', ';', ':', '"', ',', '<', '>', '/', '`', '~'
+    ]; // Lista de caracteres no permitidos
+    
+
+   // Verificar si el carácter no está permitido
+   if (caracteresNoPermitidos.includes(event.key)) {
+       event.preventDefault(); // Prevenir la entrada del carácter
       return;
     }
-  }
+}
+
+//2) Función para que no pegue caracteres indebidos
+
+//Para prevenir que pegue caracteres que dañen el sistema:
+document.getElementById('nombreUsuario').addEventListener('paste', function(e) {
+    e.preventDefault();
+});
+
+document.getElementById('direccionResidencia').addEventListener('paste', function(e) {
+    e.preventDefault();
+});
+
+document.getElementById('correo').addEventListener('paste', function(e) {
+    e.preventDefault();
+});
 
 
 function listarUsuario() {
     var busqueda = document.getElementById("buscar").value;
     var urlBusqueda = url;
     if (busqueda!=""){
-    urlBusqueda+="?search="+busqueda; 
-  
-  }
+    urlBusqueda+="?search="+busqueda;
+    }
     $.ajax({
         url:urlBusqueda,
         type: "GET",

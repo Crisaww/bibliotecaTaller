@@ -207,32 +207,41 @@
                                   <div class="col-12" style="text-align: center;">
                                       <h1 style="margin: 0; color: #000000;">Actualizar préstamos</h1>
                                       <h5 style="margin: 0; color: #000000;">Todos los campos con (*) son obligatorios</h5>
+                                      <br>
                                   </div>
                                   
                                   <div class="col-md-4">
-                                    <label for="fecha_prestamo" class="form-label">Fecha de préstamo*</label>
+                                    <label for="titulo" class="form-label">
+                                      <h5 style="font-size: 15px; color:black;">Fecha de préstamo*</h5>
+                                  </label>
                                     <input type="date" class="form-control" name="fecha_prestamo" id="fecha_prestamo" onfocusout="validarFechaPrestamo(this);" >
                                     <input type="hidden" id="id"> 
                                   </div>
                                 
                                 
                                   <div class="col-md-4">
-                                    <label for="fecha_devolucion" class="form-label">Fecha de devolución*</label>
+                                    <label for="titulo" class="form-label">
+                                      <h5 style="font-size: 15px; color:black;">Fecha de devolución*</h5>
+                                  </label>
                                     <input type="date" class="form-control" name="fecha_devolucion" id="fecha_devolucion" onfocusout="validarFechaDevolucion(this);" >
                                   </div>
                 
                                   <div class="col-md-4" >
-                                    <label for="usuario" class="form-label">Usuario que realiza el préstamo*</label>
+                                    <label for="titulo" class="form-label">
+                                      <h5 style="font-size: 15px; color:black;">Usuario que realiza el préstamo*</h5>
+                                  </label>
                                      <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuarioPrestamo(this);">
                                         <option selected disabled value="">Usuario...</option>
                                         <option value=""></option>
                                         <option value=""></option>
-                                        
                                     </select>
+                                    <br>
                                   </div>
                 
                                   <div class="col-md-4">
-                                    <label for="libro" class="form-label">Libro*</label>
+                                    <label for="titulo" class="form-label">
+                                      <h5 style="font-size: 15px; color:black;">Libro*</h5>
+                                  </label>
                                      <select name="libro" id="libro" class="form-select" onfocusout="validarLibroPrestado(this);">
                                         <option selected disabled value="">Libro...</option>
                                         <option value=""></option>
@@ -242,7 +251,9 @@
                                   </div>
                 
                                   <div class="col-md-4">
-                                    <label for="estado_prestamo" class="form-label">Estado del préstamo*</label>
+                                    <label for="titulo" class="form-label">
+                                      <h5 style="font-size: 15px; color:black;">Estado del préstamo*</h5>
+                                  </label>
                                      <select name="estado_prestamo" id="estado_prestamo" class="form-select" onfocusout="validarEstadoPrestamo(this);">
                                         <option selected disabled value="">Seleccione el estado...</option>
                                         <option value="Prestamo">Préstamo</option>

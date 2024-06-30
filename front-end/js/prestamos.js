@@ -183,7 +183,7 @@ function validarFechaPrestamo(fechaPrestamo) {
 
     let valor = fechaPrestamo.value;
     let valido = true;
-    if (valor.length < 1 || valor.length > 9) {
+    if (valor.length < 1 || valor.length > 10) {
         valido = false;
     }
 
@@ -203,7 +203,7 @@ function validarFechaDevolucion(fechaDevolucion) {
 
     let valor = fechaDevolucion.value;
     let valido = true;
-    if (valor.length < 1 || valor.length > 9) {
+    if (valor.length < 1 || valor.length > 10) {
         valido = false;
     }
 
