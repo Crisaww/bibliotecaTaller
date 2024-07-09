@@ -1,6 +1,6 @@
 //Se almacena la URL de la API
-//let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
-let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
+let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
+//let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
 
 
 //1) Función de caracteres no permitidos
@@ -106,8 +106,8 @@ function listarMulta() {
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
-        //url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
-        url: 'http://192.168.1.8:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        //url: 'http://192.168.1.8:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (usuario) {
             celdaUsuario.innerText = usuario.nombreUsuario;
@@ -121,8 +121,8 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerEstadoPrestamo(id, celdaEstadoPrestamo) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
-       //url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
-        url: 'http://192.168.1.8:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+       url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+       // url: 'http://192.168.1.8:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (prestamo) {
             celdaEstadoPrestamo.innerText = prestamo.estado_prestamo;
@@ -363,8 +363,8 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarPrestamo() {
-    //let urlPrestamo = "http://10.192.66.25:8000/libreria/api/v1/prestamo/";
-    let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo";
+    let urlPrestamo = "http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+    //let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo";
 
     $.ajax({
         url: urlPrestamo,
@@ -386,8 +386,8 @@ function cargarPrestamo() {
 
 // Función para traer los libros
 function cargarUsuario() {
-    //let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
-    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario";
+    let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario";
 
     $.ajax({
         url: urlUsuario,
