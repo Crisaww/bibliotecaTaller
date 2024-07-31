@@ -1,5 +1,5 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/usuario/";
+let url="http://10.192.66.35:8000/libreria/api/v1/usuario/";
 //let url="http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
 //1) Función de caracteres no permitidos

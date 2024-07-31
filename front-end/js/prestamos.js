@@ -1,5 +1,5 @@
 //Se almacena la URL de la API
-let url="http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+let url="http://10.192.66.35:8000/libreria/api/v1/prestamo/";
 //let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
 
 function listarPrestamo() {
@@ -89,7 +89,7 @@ function listarPrestamo() {
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://10.192.66.35:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         //url:"http://192.168.1.8:8000/libreria/api/v1/usuario"+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (usuario) {
@@ -104,7 +104,7 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerTituloLibro(id, celdaLibro) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
-        url: 'http://10.192.66.25:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://10.192.66.35:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         //url: 'http://192.168.1.8:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         type: 'GET',
         success: function (libro) {
@@ -344,7 +344,7 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarLibro() {
-    let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/libro/";
+    let urlLibro = "http://10.192.66.35:8000/libreria/api/v1/libro/";
     //let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
 
     $.ajax({
@@ -367,7 +367,7 @@ function cargarLibro() {
 
 // Función para traer los libros
 function cargarUsuario() {
-    let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://10.192.66.35:8000/libreria/api/v1/usuario/";
     //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
 
     $.ajax({
