@@ -1,11 +1,6 @@
 //Se almacena la URL de la API
-<<<<<<< HEAD
-let url="http://10.192.66.35:8000/libreria/api/v1/libro/";
+let url="http://10.192.66.56:8000/libreria/api/v1/libro/";
 //let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
-=======
-//let url="http://10.192.66.25:8000/libreria/api/v1/libro/";
-let url="http://192.168.1.8:8000/libreria/api/v1/libro/";
->>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
 //1) Función de caracteres no permitidos
 
