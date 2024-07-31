@@ -1,6 +1,11 @@
 //Se almacena la URL de la API
+<<<<<<< HEAD
 let url="http://10.192.66.35:8000/libreria/api/v1/multa/";
 //let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
+=======
+//let url="http://10.192.66.25:8000/libreria/api/v1/multa/";
+let url = "http://192.168.1.8:8000/libreria/api/v1/multa/";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
 
 //1) Función de caracteres no permitidos
@@ -106,8 +111,13 @@ function listarMulta() {
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
+<<<<<<< HEAD
         url: 'http://10.192.66.35:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         //url: 'http://192.168.1.8:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+=======
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
         type: 'GET',
         success: function (usuario) {
             celdaUsuario.innerText = usuario.nombreUsuario;
@@ -121,8 +131,13 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerEstadoPrestamo(id, celdaEstadoPrestamo) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
+<<<<<<< HEAD
        url: 'http://10.192.66.35:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
        // url: 'http://192.168.1.8:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+=======
+       //url: 'http://10.192.66.25:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/prestamo'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
         type: 'GET',
         success: function (prestamo) {
             celdaEstadoPrestamo.innerText = prestamo.estado_prestamo;
@@ -363,8 +378,13 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarPrestamo() {
+<<<<<<< HEAD
     let urlPrestamo = "http://10.192.66.35:8000/libreria/api/v1/prestamo/";
     //let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo";
+=======
+    //let urlPrestamo = "http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+    let urlPrestamo = "http://192.168.1.8:8000/libreria/api/v1/prestamo";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
     $.ajax({
         url: urlPrestamo,
@@ -386,8 +406,13 @@ function cargarPrestamo() {
 
 // Función para traer los libros
 function cargarUsuario() {
+<<<<<<< HEAD
     let urlUsuario = "http://10.192.66.35:8000/libreria/api/v1/usuario/";
     //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario";
+=======
+    //let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
     $.ajax({
         url: urlUsuario,

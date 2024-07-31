@@ -1,6 +1,11 @@
 //Se almacena la URL de la API
+<<<<<<< HEAD
 let url="http://10.192.66.35:8000/libreria/api/v1/prestamo/";
 //let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+=======
+//let url="http://10.192.66.25:8000/libreria/api/v1/prestamo/";
+let url="http://192.168.1.8:8000/libreria/api/v1/prestamo/";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
 function listarPrestamo() {
     $.ajax({
@@ -89,8 +94,13 @@ function listarPrestamo() {
 function obtenerNombreUsuario(id, celdaUsuario) {
     // Hacer una petición AJAX para obtener el nombre del usuario
     $.ajax({
+<<<<<<< HEAD
         url: 'http://10.192.66.35:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         //url:"http://192.168.1.8:8000/libreria/api/v1/usuario"+ '/' + id + '/',  // Ajusta la URL según tu configuración
+=======
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/usuario'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url:"http://192.168.1.8:8000/libreria/api/v1/usuario"+ '/' + id + '/',  // Ajusta la URL según tu configuración
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
         type: 'GET',
         success: function (usuario) {
             celdaUsuario.innerText = usuario.nombreUsuario;
@@ -104,8 +114,13 @@ function obtenerNombreUsuario(id, celdaUsuario) {
 function obtenerTituloLibro(id, celdaLibro) {
     // Hacer una petición AJAX para obtener el título del libro
     $.ajax({
+<<<<<<< HEAD
         url: 'http://10.192.66.35:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
         //url: 'http://192.168.1.8:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+=======
+        //url: 'http://10.192.66.25:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+        url: 'http://192.168.1.8:8000/libreria/api/v1/libro'+ '/' + id + '/',  // Ajusta la URL según tu configuración
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
         type: 'GET',
         success: function (libro) {
             celdaLibro.innerText = libro.titulo;
@@ -344,8 +359,13 @@ function CargarFormulario() {
 
 // Función para traer los libros
 function cargarLibro() {
+<<<<<<< HEAD
     let urlLibro = "http://10.192.66.35:8000/libreria/api/v1/libro/";
     //let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
+=======
+    //let urlLibro = "http://10.192.66.25:8000/libreria/api/v1/libro/";
+    let urlLibro = "http://192.168.1.8:8000/libreria/api/v1/libro/";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
     $.ajax({
         url: urlLibro,
@@ -367,8 +387,13 @@ function cargarLibro() {
 
 // Función para traer los libros
 function cargarUsuario() {
+<<<<<<< HEAD
     let urlUsuario = "http://10.192.66.35:8000/libreria/api/v1/usuario/";
     //let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
+=======
+    //let urlUsuario = "http://10.192.66.25:8000/libreria/api/v1/usuario/";
+    let urlUsuario = "http://192.168.1.8:8000/libreria/api/v1/usuario/";
+>>>>>>> fbcaf2008fe6e928380a2b524380c19844aa43e1
 
     $.ajax({
         url: urlUsuario,
